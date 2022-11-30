@@ -6,20 +6,25 @@ import { ROLES } from "../../constants/userRoles";
 import "./signup.css";
 
 const Signup = (props) => {
-  const { onSignupSumbit, goToLogin } = props;
+  const { onSignupSumbit, goToLogin, errorMessageSignup } = props;
 
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUserName] = useState("");
+  const [name, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState(ROLES.CUSTOMER);
+
+  const submitHandler =()=>{
+    const data = {userId, password, name, email, userType } ;
+    onSignupSumbit(data)
+  }
 
   return (
     <div className="main">
       <div className="form-body-signup">
         <p className="text pt-4">Sign up</p>
         <div className="pe-5">
-          <form onSubmit={onSignupSumbit}>
+          <form onSubmit={submitHandler}>
             <div className="">
               <input
                 type="text"
@@ -37,7 +42,7 @@ const Signup = (props) => {
               <input
                 type="text"
                 placeholder="UserName"
-                value={username}
+                value={name}
                 onChange={(e) => setUserName(e.target.value)}
               />
               <input
@@ -78,8 +83,12 @@ const Signup = (props) => {
                 Login
               </a>
             </div>
+            <div className="text-danger ms-2">
+              {errorMessageSignup}
+            </div>
           </form>
         </div>
+
       </div>
     </div>
   );

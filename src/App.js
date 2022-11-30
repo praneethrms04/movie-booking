@@ -1,10 +1,12 @@
 import "./App.css";
-import Authentication from "./pages/authentication/Authentication";
+import AppRoutes from "./routes/AppRoutes";
+// import Authentication from "./pages/authentication/Authentication";
 
 function App() {
   return (
     <div className="App">
-      <Authentication />
+      {/* <Authentication /> */}
+      <AppRoutes />
     </div>
   );
 }
