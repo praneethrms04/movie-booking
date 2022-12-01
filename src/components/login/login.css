@@ -45,10 +45,9 @@ input {
 }
 ::placeholder {
   font-size: 16px;
-  color: white;
 }
 .signup {
-    margin-top: 20px;
-    font-family: verdana;
-    margin-left: 40px;
+  margin-top: 20px;
+  font-family: verdana;
+  margin-left: 40px;
 }

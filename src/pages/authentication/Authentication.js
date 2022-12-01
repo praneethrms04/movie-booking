@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../../components/login/Login";
 import Signup from "../../components/signup/Signup";
 import { userSignin, newUserSignup } from "../../api/auth.js";
+import { userDetails } from "../../utils/userDetails";
+import { ROLES } from "../../constants/userRoles";
 import "./authentication.css";
+
 const Authentication = () => {
   const [showSignup, setShowSignup] = useState(false);
   const [errorMessage, setLoginErrorMessage] = useState("");
@@ -20,11 +23,29 @@ const Authentication = () => {
     setShowSignup(true);
   };
 
+  const redirectToPage = (userType) => {
+    if (userType === ROLES.CUSTOMER) {
+      navigate("/");
+    } else if (userType === ROLES.CLIENT) {
+      navigate("/client");
+    } else {
+      navigate("/admin");
+    }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      const userType = localStorage.getItem("userTypes");
+      redirectToPage(userType);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleLoginSubmit = (data) => {
     console.log(data);
     userSignin(data)
       .then((res) => {
-        const { status, message } = res;
+        const { status, message, data } = res;
         if (status === 200) {
           if (message) {
             // case when login credentials are incorrect
@@ -32,18 +53,22 @@ const Authentication = () => {
           } else {
             // success when api passes with corect credentials
             // store user data in the localstorage
+            userDetails(data);
             // navigate to the correct page on login based on user type
-            navigate("/client");
+            const userType = data.userTypes;
+            redirectToPage(userType);
           }
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // case when api fails due to network/auth issue
+        setLoginErrorMessage(err?.response?.data?.message || err?.message);
+      });
     // 1. make an api call and post the data to signup
     // 2. if api call is successful, redirect to login page
     // 3. show a message to user that login is successful
 
     // if submit is success
-    setShowSignup(false);
 
     // if it is failure
   };
@@ -52,12 +77,13 @@ const Authentication = () => {
     // console.log(data);
     newUserSignup(data)
       .then((res) => {
-        const { message, status } = res;
-        if (status === 201) {
+        // console.log(res);
+        if (res.status === 201) {
+          // console.log("hello")
           setShowSignup(false);
           setLoginMessage("Sign up SuccessFul..! Please Login");
-        } else if (message) {
-          setErrorMessageSignup(message);
+        } else if (res.message) {
+          setErrorMessageSignup(res.message);
         }
       })
       .catch((error) => {
