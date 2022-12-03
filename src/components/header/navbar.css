@@ -1,0 +1,10 @@
+
+.loginbtn {
+  margin-right: 25px;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+}

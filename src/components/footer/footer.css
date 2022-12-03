@@ -1,0 +1,29 @@
+.footer {
+  background: #434242;
+  width: 100%;
+  color: #b2b2b2;
+  padding-top: 100px;
+  cursor: pointer;
+}
+.footer-items {
+  background-color: #000;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-icons {
+  padding-top: 60px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+a:hover {
+    color: #fff;
+  }
+.contact {
+    color: #FFCACA;
+  }
