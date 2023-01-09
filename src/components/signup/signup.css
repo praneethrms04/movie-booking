@@ -81,3 +81,7 @@ input {
 #userType{
   color: #fff;
 }
+.pointer {
+  cursor: pointer;
+  color: blue;
+}

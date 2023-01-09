@@ -14,10 +14,10 @@ const Signup = (props) => {
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState(ROLES.CUSTOMER);
 
-  const submitHandler =()=>{
-    const data = {userId, password, name, email, userType } ;
-    onSignupSumbit(data)
-  }
+  const submitHandler = () => {
+    const data = { userId, password, name, email, userType };
+    onSignupSumbit(data);
+  };
 
   return (
     <div className="main">
@@ -78,17 +78,11 @@ const Signup = (props) => {
               />
             </div>
             <div className="login">
-              Do you have an account ?
-              <a href="#" onClick={goToLogin}>
-                Login
-              </a>
+              Do you have an account ?<p className="pointer" onClick={goToLogin}>Login</p>
             </div>
-            <div className="text-danger ms-2">
-              {errorMessageSignup}
-            </div>
+            <div className="text-danger ms-2">{errorMessageSignup}</div>
           </form>
         </div>
-
       </div>
     </div>
   );

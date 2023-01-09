@@ -3,10 +3,9 @@ import { useState } from "react";
 import "./login.css";
 
 const Login = (props) => {
-  const { onLoginSumbit, goToSignup,loginMessage, loginErrorMessage } = props;
+  const { onLoginSumbit, goToSignup, loginMessage, loginErrorMessage } = props;
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
-
 
   const handleSubmit = () => {
     const data = { userId, password };
@@ -39,17 +38,10 @@ const Login = (props) => {
               />
             </div>
             <div className="signup">
-              You Don't have an account ?
-              <a href="#" onClick={goToSignup}>
-                Signup
-              </a>
+              You Don't have an account ?<p className="pointer" onClick={goToSignup}>Signup</p>
             </div>
-            <div className="text-danger pt-2 ms-4">
-            {loginErrorMessage}
-            </div>
-            <div className="text-success pt-2 ms-4">
-            {loginMessage}
-            </div>
+            <div className="text-danger pt-2 ms-4">{loginErrorMessage}</div>
+            <div className="text-success pt-2 ms-4">{loginMessage}</div>
           </form>
         </div>
       </div>

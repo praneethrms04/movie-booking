@@ -51,3 +51,7 @@ input {
   font-family: verdana;
   margin-left: 40px;
 }
+.pointer {
+  cursor: pointer;
+  color: blue;
+}
