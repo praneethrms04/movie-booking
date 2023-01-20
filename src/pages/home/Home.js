@@ -18,7 +18,7 @@ import img5 from "../../assets/images/img5.avif";
 import "./home.css";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
-  // const [allmovies, setAllMovies] = useState([]);
+  const [allmovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
@@ -30,6 +30,7 @@ const Home = () => {
         if (status === 200) {
           console.log(data);
           setMovies(data);
+          setAllMovies(data);
           setIsLoading(false);
         }
       })
@@ -41,10 +42,16 @@ const Home = () => {
   const handleGotoDetailPage = (movieId) => {
     navigate(`/movie-detail/${movieId}`);
   };
+  const filterMoviesBySearch = (searchText) => {
+    const filteredmovies = allmovies.filter((movie) => {
+      return movie.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+    setMovies(filteredmovies);
+  };
 
   return (
     <div>
-      <Navbar />
+      <Navbar filterMoviesBySearch={filterMoviesBySearch} hideSearch={true} />
       <Slider images={[img1, img2, img3, img4, img5]} />
       <Container fluid>
         {isLoading ? (
@@ -83,3 +90,4 @@ const Home = () => {
 };
 
 export default Home;
+console.log("hello")

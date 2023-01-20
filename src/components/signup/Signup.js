@@ -14,7 +14,8 @@ const Signup = (props) => {
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState(ROLES.CUSTOMER);
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault()
     const data = { userId, password, name, email, userType };
     onSignupSumbit(data);
   };
@@ -67,6 +68,9 @@ const Signup = (props) => {
                     <Dropdown.Item eventKey={ROLES.CLIENT}>
                       {ROLES.CLIENT}
                     </Dropdown.Item>
+                    {/* <Dropdown.Item eventKey={ROLES.ADMIN}>
+                      {ROLES.ADMIN}
+                    </Dropdown.Item> */}
                   </DropdownButton>
                 </div>
               </div>

@@ -7,7 +7,8 @@ const Login = (props) => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     const data = { userId, password };
     onLoginSumbit(data);
   };

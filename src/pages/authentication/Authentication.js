@@ -62,6 +62,7 @@ const Authentication = () => {
       })
       .catch((err) => {
         // case when api fails due to network/auth issue
+        console.log(err)
         setLoginErrorMessage(err?.response?.data?.message || err?.message);
       });
     // 1. make an api call and post the data to signup
@@ -70,6 +71,7 @@ const Authentication = () => {
 
     // if submit is success
 
+    
     // if it is failure
   };
 
@@ -78,6 +80,7 @@ const Authentication = () => {
     newUserSignup(data)
       .then((res) => {
         // console.log(res);
+        // const {message, status} = res;
         if (res.status === 201) {
           // console.log("hello")
           setShowSignup(false);

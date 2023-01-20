@@ -9,7 +9,7 @@ export const userSignin = async (data) => {
 };
 
 // signup
-export const newUserSignup = (data) => {
+export const newUserSignup = async (data) => {
   const postUrl = `${BASE_URL}/mba/api/v1/auth/signup`;
   return axios.post(postUrl, data);
 };
