@@ -7,3 +7,11 @@ export const getAllTheatres = async () => {
     return await axios.get(getUrl);
 };
 
+export const updateTheatre = async(theatreId, theatredata)=>{
+    const postUrl = `${BASE_URL}/mba/api/v1/theatres/${theatreId}`;
+    return await axios.put(postUrl, theatredata,{
+        headers: {
+            "x-access-token" : localStorage.getItem("accessToken"),
+        }
+    })
+}
