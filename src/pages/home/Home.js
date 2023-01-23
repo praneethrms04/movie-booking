@@ -90,4 +90,3 @@ const Home = () => {
 };
 
 export default Home;
-console.log("hello")
